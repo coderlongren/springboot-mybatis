@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qunar.mybatis.mapper.UserMapper">
+
+    <resultMap id="User" type="com.qunar.mybatis.domain.User">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.qunar.mybatis.domain.User">
+        insert INTO user(name) values(#{name})
+    </insert>
+
+
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `user`
+        (
+               gmt_modified ,
+               gmt_created ,
+               `name`,
+               status
+        )
+        VALUES (
+               now()  ,
+               now()  ,
+               #{name},
+               #{status}
+        );
+    </insert>
+
+    <update id="modify">
+        UPDATE `user`
+        <set>
+            gmt_modified=now()
+
+            <if test="gmtCreated !=null">
+                ,gmt_created = #{gmtCreated}
+            </if>
+            <if test="name !=null">
+                ,`name` = #{name}
+            </if>
+            <if test="status !=null">
+                ,`status` = #{status}
+            </if>
+        </set>
+        where
+        id=#{id};
+    </update>
+
+</mapper>

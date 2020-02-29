@@ -1,12 +1,13 @@
-package cn.wolfcode.mycat.domain;
+package com.qunar.mybatis.domain;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * Created by wolfcode-lanxw
  */
-@Setter@Getter
+@Data
 public class User {
     private Long id;
     private String name;

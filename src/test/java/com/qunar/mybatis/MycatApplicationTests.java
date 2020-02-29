@@ -1,4 +1,4 @@
-package cn.wolfcode.mycat;
+package com.qunar.mybatis;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
